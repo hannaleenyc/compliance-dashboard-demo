@@ -1,0 +1,10 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+# Ignore everything by default
+*
+
+# But allow these
+!.gitignore
+!README.md
+!app.py
+!utils.py
+!data_dummy/
