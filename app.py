@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 ## from sql_load import get_data, get_csv
 from utils import login_form
-## from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() =="true"
 
