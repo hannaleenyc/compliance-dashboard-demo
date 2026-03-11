@@ -13,7 +13,7 @@ DEMO_MODE = os.getenv("DEMO_MODE", "true").lower() == "true"
 if DEMO_MODE:
     st.info("Demo Mode: login bypassed")
     import pandas as pd
-    compliance = pd.read_csv("data_dummy\\compliance_dummy.csv")
+    compliance = pd.read_csv("data_dummy/compliance_dummy.csv")
 else:
     # Initialize session state for login
     if "logged_in" not in st.session_state:
@@ -37,8 +37,8 @@ st.write("Please select report type to view.")
 ## Replace data to demo data
 
 if DEMO_MODE: 
-    compliance = pd.read_csv("data_dummy\\compliance_dummy.csv")
-    data = pd.read_csv("data_dummy\\compliance_dummy.csv")
+    compliance = pd.read_csv("data_dummy/compliance_dummy.csv")
+    data = pd.read_csv("data_dummy/compliance_dummy.csv")
 else:
     st.warning("App is not running on DEMO_MODE.")
     st.stop()
