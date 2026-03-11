@@ -93,9 +93,14 @@ def get_table_height(df):
     return table_height
 
 # Load .env from project root
-load_dotenv('venv\\.env')
-USERNAME = os.getenv("LOGIN_ID")
-PASSWORD_HASH = os.getenv("PASSWORD_HASH")  
+# load_dotenv('venv\\.env')
+# USERNAME = os.getenv("LOGIN_ID")
+# PASSWORD_HASH = os.getenv("PASSWORD_HASH")  
+
+import hashlib
+USERNAME =st.secrets["USERNAME"]
+PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
+
 '''
 def check_login():
     
@@ -148,10 +153,7 @@ def login_form():
         password_input = st.text_input("Password", type="password").strip()
         submitted = st.form_submit_button("Login")
 
-        if submitted:
-            import hashlib
-            USERNAME =st.secrets["USERNAME"]
-            PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
+        if submitted:            
             hashed_input = hashlib.sha256(password_input.encode()).hexdigest()
             if username_input == USERNAME and hashed_input == PASSWORD_HASH:
                 st.session_state.logged_in = True
