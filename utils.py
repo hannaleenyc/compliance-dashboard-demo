@@ -101,9 +101,9 @@ import hashlib
 USERNAME =st.secrets["USERNAME"]
 PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
 
-'''
+''' 
 def check_login():
-    
+   
     st.sidebar.title("🔒 Login")
 
     # Sidebar input fields
@@ -146,11 +146,10 @@ def check_login():
 '''
 
 def login_form():
-    
     with st.form("login_form"):
         st.write("🔒 Please log in to access the dashboard")
-        username_input = st.text_input("Username").strip()
-        password_input = st.text_input("Password", type="password").strip()
+        username_input = st.text_input("Username")
+        password_input = st.text_input("Password", type="password")
         submitted = st.form_submit_button("Login")
 
         if submitted:            
