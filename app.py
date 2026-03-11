@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from sql_load import get_data, get_csv
 from utils import check_login, login_form
+from dotenv import load_dotenv
+import os
+
+load_dotenv("venv\\.env")
+
+DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() =="true"
 
 # Initialize session state for login
 if "logged_in" not in st.session_state:
@@ -12,9 +18,18 @@ if not st.session_state.logged_in:
     login_form()
     st.stop()  # Stop the rest of the app until login succeeds
 
+st.set_page_config(
+    page_title = "Reporting Compliance Dashboard", 
+    layout= "wide"
+)
 
-st.title("SHS Projected Exits Dashboard")
+## with st.expander("About this dashboard"):
+##    st.write("This demo uses dummy data for viewing purposes.")
+
+st.title("Report Compliance Demo Dashboard")
+## REal Title: st.title("SHS Projected Exits Dashboard")
 st.caption("Prototpe Internal Monitoring Tool - Created on March 9, 2026")
+st.info("Demo version using synthetic data for UI & viewing purposes.")
 st.write("")
 st.write("Please select report type to view.")
 
@@ -59,6 +74,14 @@ except Exception:
         st.error("SQL load failed")
         st.write(e)
 
+## Replace data to demo data
+
+if DEMO_MODE: 
+    compliance = pd.read_csv("data_dummy\\compliance_dummy.csv")
+    data = pd.read_csv("data_dummy\\compliance_dummy.csv")
+else: 
+    pass
+
 st.sidebar.header("Filters & Views")
 st.sidebar.write('Select date range for report view.')
 
@@ -79,7 +102,7 @@ if len(date_range) == 2:
     ]
 
     from utils import pivot_late_submissions, pivot_report_status, pivot_weeks_by_facility, build_reporting_tables, get_table_height
-    data = filtered_df.copy()
+    ## data = filtered_df.copy()
 
     st.sidebar.header("Filters")
 
@@ -121,7 +144,7 @@ if len(date_range) == 2:
     if data.empty: 
             st.write("No data returned for selected filters. Try adjusting the date range or site.")
             st.stop()
-            
+
     facility_dict = build_reporting_tables(data)
 
     if not facility_dict:
@@ -130,7 +153,11 @@ if len(date_range) == 2:
     
     
     # Map friendly tab names to facility types
-    tab_map = {"Safe Haven":"Safe Haven", "Stabilization":"Stabilization", "Drop-in Center":"Drop-in Center", "Outreach Team ":"Outreach Team "}
+
+    if DEMO_MODE: 
+        tab_map = {"Fruit Pie":"Fruit Pie", "Candy Canes":"Candy Canes", "Gummy Bears":"Gummy Bears", "Cookie Dough":"Cookie Dough"}
+    else: 
+        tab_map = {"Safe Haven":"Safe Haven", "Stabilization":"Stabilization", "Drop-in Center":"Drop-in Center", "Outreach Team ":"Outreach Team "}
 
     tabs = st.tabs(list(tab_map.keys()))
 
