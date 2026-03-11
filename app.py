@@ -30,7 +30,7 @@ else:
 st.title("Report Compliance Demo Dashboard")
 ## REal Title: st.title("SHS Projected Exits Dashboard")
 st.caption("Prototpe Internal Monitoring Tool - Created on March 9, 2026")
-st.info("Demo version using synthetic data for UI & viewing purposes.")
+st.caption("Demo version using synthetic data for UI & viewing purposes.")
 st.write("")
 st.write("Please select report type to view.")
 
