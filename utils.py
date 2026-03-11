@@ -96,9 +96,9 @@ def get_table_height(df):
 load_dotenv('venv\\.env')
 USERNAME = os.getenv("LOGIN_ID")
 PASSWORD_HASH = os.getenv("PASSWORD_HASH")  
-
+'''
 def check_login():
-    '''
+    
     st.sidebar.title("🔒 Login")
 
     # Sidebar input fields
