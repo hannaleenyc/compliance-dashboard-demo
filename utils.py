@@ -141,9 +141,7 @@ def check_login():
 '''
 
 def login_form():
-    import hashlib
-    USERNAME =st.secrets["USERNAME"]
-    PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
+    
     with st.form("login_form"):
         st.write("🔒 Please log in to access the dashboard")
         username_input = st.text_input("Username").strip()
@@ -151,6 +149,9 @@ def login_form():
         submitted = st.form_submit_button("Login")
 
         if submitted:
+            import hashlib
+            USERNAME =st.secrets["USERNAME"]
+            PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
             hashed_input = hashlib.sha256(password_input.encode()).hexdigest()
             if username_input == USERNAME and hashed_input == PASSWORD_HASH:
                 st.session_state.logged_in = True
