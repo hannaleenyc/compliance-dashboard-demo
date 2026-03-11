@@ -30,54 +30,52 @@ st.info("Demo version using synthetic data for UI & viewing purposes.")
 st.write("")
 st.write("Please select report type to view.")
 
-'''
-# Load data directly from SQL
-try: 
-    from pathlib import Path
-    from datetime import datetime, timedelta
-    file_path = Path("data\\compliance.csv")
-    last_modified = datetime.fromtimestamp(file_path.stat().st_mtime)
-    last_modified = pd.to_datetime(str(last_modified)[:10])
-
-    today = datetime.today()
-    days_since_modified = today - last_modified
-
-    if days_since_modified > timedelta(days=7) :
-        st.warning("Data Needs Update - loading from SQL")
-        compliance, pmo_data, reentry_data = get_data()
-        get_csv()
-        ## st.write(compliance.head())
-        ## st.write(pmo_data.head())
-        ## st.write(reentry_data)
-
-    else: 
-        compliance, pmo_data, reentry_data = get_csv()
-        ## st.write(compliance.head())
-        ## st.write(pmo_data.head())
-        ## st.write(reentry_data)
-        
-except Exception:
-    st.warning("Data Needs Update - loading from SQL") 
-    compliance, pmo_data, reentry_data = get_csv()
-
-    try: 
-        compliance, pmo_data, reentry_data = get_data()
-        get_csv()
-        ## st.write(compliance.head())
-        ## st.write(pmo_data.head())
-        ## st.write(reentry_data)
-
-    except Exception as e:
-        st.error("SQL load failed")
-        st.write(e)
-'''
 ## Replace data to demo data
 
 if DEMO_MODE: 
     compliance = pd.read_csv("data_dummy\\compliance_dummy.csv")
     data = pd.read_csv("data_dummy\\compliance_dummy.csv")
 else: 
-    pass
+    st.stop()
+    # Load data directly from SQL
+    try: 
+        from pathlib import Path
+        from datetime import datetime, timedelta
+        file_path = Path("data\\compliance.csv")
+        last_modified = datetime.fromtimestamp(file_path.stat().st_mtime)
+        last_modified = pd.to_datetime(str(last_modified)[:10])
+    
+        today = datetime.today()
+        days_since_modified = today - last_modified
+    
+        if days_since_modified > timedelta(days=7) :
+            st.warning("Data Needs Update - loading from SQL")
+            compliance, pmo_data, reentry_data = get_data()
+            get_csv()
+            ## st.write(compliance.head())
+            ## st.write(pmo_data.head())
+            ## st.write(reentry_data)
+    
+        else: 
+            compliance, pmo_data, reentry_data = get_csv()
+            ## st.write(compliance.head())
+            ## st.write(pmo_data.head())
+            ## st.write(reentry_data)
+            
+    except Exception:
+        st.warning("Data Needs Update - loading from SQL") 
+        compliance, pmo_data, reentry_data = get_csv()
+    
+        try: 
+            compliance, pmo_data, reentry_data = get_data()
+            get_csv()
+            ## st.write(compliance.head())
+            ## st.write(pmo_data.head())
+            ## st.write(reentry_data)
+    
+        except Exception as e:
+            st.error("SQL load failed")
+            st.write(e)
 
 st.sidebar.header("Filters & Views")
 st.sidebar.write('Select date range for report view.')
