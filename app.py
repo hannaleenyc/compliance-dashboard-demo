@@ -6,19 +6,23 @@ from utils import login_form
 import os
 DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() =="true"
 
-# Initialize session state for login
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
+import os
 
-# Show login form only if not logged in
-if not st.session_state.logged_in:
-    login_form()
-    st.stop()  # Stop the rest of the app until login succeeds
+DEMO_MODE = os.getenv("DEMO_MODE", "true").lower() == "true"
 
-st.set_page_config(
-    page_title = "Reporting Compliance Dashboard", 
-    layout= "wide"
-)
+if DEMO_MODE:
+    st.info("Demo Mode: login bypassed")
+    import pandas as pd
+    compliance = pd.read_csv("data_dummy/compliance_dummy.csv")
+else:
+    # Initialize session state for login
+    if "logged_in" not in st.session_state:
+        st.session_state.logged_in = False
+    
+    # Show login form only if not logged in
+    if not st.session_state.logged_in:
+        login_form()
+        st.stop()  # Stop the rest of the app until login succeeds
 
 ## with st.expander("About this dashboard"):
 ##    st.write("This demo uses dummy data for viewing purposes.")
@@ -36,6 +40,8 @@ if DEMO_MODE:
     compliance = pd.read_csv("data_dummy\\compliance_dummy.csv")
     data = pd.read_csv("data_dummy\\compliance_dummy.csv")
 else:
+    st.warning("App is not running on DEMO_MODE.")
+    st.stop()
     # Load data directly from SQL
     try: 
         from pathlib import Path
