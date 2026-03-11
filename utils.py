@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import hashlib
 import os
-from dotenv import load_dotenv
+## from dotenv import load_dotenv
 
 def pivot_report_status(df):
     temp = pd.pivot_table(df, index='List_of_Sites_SHS_Portfolio',
