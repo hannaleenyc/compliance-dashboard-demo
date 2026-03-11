@@ -141,6 +141,9 @@ def check_login():
 '''
 
 def login_form():
+    import hashlib
+    USERNAME =st.secrets["USERNAME"]
+    PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
     with st.form("login_form"):
         st.write("🔒 Please log in to access the dashboard")
         username_input = st.text_input("Username").strip()
