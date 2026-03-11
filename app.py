@@ -11,7 +11,7 @@ import os
 DEMO_MODE = os.getenv("DEMO_MODE", "true").lower() == "true"
 
 if DEMO_MODE:
-    st.info("Demo Mode: login bypassed")
+    st.info("Demo Mode: login bypassed; Demo version - using synthetic data for UI & viewing purposes.")
     import pandas as pd
     compliance = pd.read_csv("data_dummy/compliance_dummy.csv")
 else:
@@ -30,7 +30,6 @@ else:
 st.title("Report Compliance Demo Dashboard")
 ## REal Title: st.title("SHS Projected Exits Dashboard")
 st.caption("Prototpe Internal Monitoring Tool - Created on March 9, 2026")
-st.caption("Demo version using synthetic data for UI & viewing purposes.")
 st.write("")
 st.write("Please select report type to view.")
 
