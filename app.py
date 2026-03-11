@@ -110,36 +110,18 @@ if len(date_range) == 2:
         data = data[
             data['Facility_Type']==selected_type
         ]
-        if selected_name != 'All':
+    if selected_name != 'All':
             data = data[
                 data['List_of_Sites_SHS_Portfolio'] == selected_name
             ]
-        if selected_pa != 'All':
+    if selected_pa != 'All':
             data = data[
                 data['PA'] == selected_pa
             ]
-        if data.empty: 
+    if data.empty: 
             st.write("No data returned for selected filters. Try adjusting the date range or site.")
             st.stop()
-        else:
-            pass
-    
-    else: 
-        if selected_name != 'All':
-            data = data[
-                data['List_of_Sites_SHS_Portfolio'] == selected_name
-            ]
-        if selected_pa != 'All':
-            data = data[
-                data['PA'] == selected_pa
-            ]
-        if data.empty: 
-            st.write("No data returned for selected filters. Try adjusting the date range or site.")
-            st.stop()
-        else: 
-            pass
             
-
     facility_dict = build_reporting_tables(data)
 
     if not facility_dict:
