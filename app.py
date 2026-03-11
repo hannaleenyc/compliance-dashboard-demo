@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 ## from sql_load import get_data, get_csv
-from utils import check_login, login_form
+from utils import login_form
 from dotenv import load_dotenv
 import os
 
