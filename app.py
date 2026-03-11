@@ -4,9 +4,6 @@ import pandas as pd
 from utils import login_form
 from dotenv import load_dotenv
 import os
-
-load_dotenv("venv/.env")
-
 DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() =="true"
 
 # Initialize session state for login
