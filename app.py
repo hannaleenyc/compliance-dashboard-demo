@@ -9,6 +9,10 @@ load_dotenv("venv\\.env")
 
 DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() =="true"
 
+import hashlib
+USERNAME =st.secrets["USERNAME"]
+PASSWORD_HASH = st.secrets["PASSWORD_HASH"]
+
 # Initialize session state for login
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
