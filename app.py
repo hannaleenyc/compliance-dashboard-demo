@@ -30,7 +30,7 @@ st.info("Demo version using synthetic data for UI & viewing purposes.")
 st.write("")
 st.write("Please select report type to view.")
 
-
+'''
 # Load data directly from SQL
 try: 
     from pathlib import Path
@@ -70,7 +70,7 @@ except Exception:
     except Exception as e:
         st.error("SQL load failed")
         st.write(e)
-
+'''
 ## Replace data to demo data
 
 if DEMO_MODE: 
