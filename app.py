@@ -101,7 +101,7 @@ if len(date_range) == 2:
     ]
 
     from utils import pivot_late_submissions, pivot_report_status, pivot_weeks_by_facility, build_reporting_tables, get_table_height
-    ## data = filtered_df.copy()
+    data = filtered_df.copy()
 
     st.sidebar.header("Filters")
 
