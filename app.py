@@ -37,7 +37,7 @@ st.write("Please select report type to view.")
 
 if DEMO_MODE: 
     compliance = pd.read_csv("data_dummy/compliance_dummy.csv")
-    data = pd.read_csv("data_dummy/compliance_dummy.csv")
+    
 else:
     st.warning("App is not running on DEMO_MODE.")
     st.stop()
